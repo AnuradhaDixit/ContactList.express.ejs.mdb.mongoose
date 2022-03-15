@@ -1,0 +1,48 @@
+
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <!-- css should be below all other styles so that it can override it -->
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+        <body>
+            <h1 id="page-heading">
+                <i class="fas fa-address-book"></i>
+                My Contact List</h1>
+
+            <div id="contacts-list-container">
+                <ul>
+
+                    <!-- //these tags tells us that javascript is written here . Equal to specify that it is the output -->
+                        <!-- we passed this data into context -->
+                    <% for(let i of contact_list){ %>
+                        <li class="contact">
+                            <div class="details">
+                            <p><%= i.name %></p>
+                            <p><%= i.phone %></p>
+                        </div>
+                        <div class="delete-button">
+                            <a href="/delete-contact/?id=<%= i._id %>">
+                                <i class="fas fa-window-close"></i>
+                            </a>
+                        </div>
+
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+
+            <form id="new-contact-form" action="/create-contact" method="post">
+                <input type="text" name="name" placeholder="Enter Name" required>
+               
+                <input type="number" name="phone" placeholder="Enter Phone Number" required>
+            
+                <button type="submit">Add Contact</button>
+            </form>
+            <script type="text/javascript" src="/js/home.js"></script>
+        </body>
+  
+</html>
